@@ -28,7 +28,7 @@ const Meal = (props) => {
             <div className="header">
                   <img src={logo} />
                 <h1>What Should I Eat?</h1>
-                <h4>An app that helps you decide what to eat</h4>
+                <h4>An app that helps you find something to eat</h4>
             </div>
 
 
