@@ -2,27 +2,45 @@ import React, {  useEffect  } from 'react';
 import {   connect } from 'react-redux';
 import {fetchRandomMeal} from '../actions';
 
-const Meal = ({  fetchRandomMeal, isFetching,  mealInfo  }) => {
+
+const Meal = (props) => {
             useEffect(()      => {
-                  fetchRandomMeal();
-            }, [fetchRandomMeal]);
+                  props.fetchRandomMeal();
+            }, []);
 
             const fetchMeal = e => {
                   e.preventDefault();
-                  fetchRandomMeal();
+                  props.fetchRandomMeal();
             };
 
-            if(isFetching) {
+            if(props.isFetching) {
                   return <h3> Please Wait ...  </h3>
             }
 
-            return (
-                  <>
+            return (  
 
-             
-                              <h2>{mealInfo}</h2>
+                 
+                  <div>
+
+
+
+                              <div>
+                                    {props.meals.map(x => (
+                                        
+                                          <div key={x.idMeal}>
+                                                <h1>{x.strMeal}</h1>
+                                                <h3>{x.strCategory}</h3>
+
+                                                </div>
+                                       
+                                         
+                                             
+                                    ))}
+                              </div>
+
+                            
                               <button onClick={fetchMeal}>fetch meal</button>
-                  </>
+                  </div>
                   )
             };
 
@@ -30,7 +48,9 @@ const Meal = ({  fetchRandomMeal, isFetching,  mealInfo  }) => {
             const mapStateToProps = state => {
                   return {
                         isFetching: state.isFetching,
-                        mealName: state.mealName
+                        mealInfo: state.mealInfo,
+                        img: state.img,
+                        meals: state.meal 
                   };
             };
 

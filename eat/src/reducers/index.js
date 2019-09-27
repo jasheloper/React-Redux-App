@@ -7,7 +7,9 @@ import {
 
 
 const initialState = {
-   mealInfo: [],
+   mealInfo: "",
+   img: "", 
+   meal: [],
    error: "",
    isFetching: false
 };
@@ -20,9 +22,12 @@ const reducer = (state = initialState, action) => {
             isFetching: true
          };
       case FETCH_MEAL_SUCCESS: 
+      console.log("hello?", action.payload)
          return {
             ...state,
             mealInfo: action.payload,
+            img: action.imgpayload, 
+            meal: action.mealpayload, 
             error: "",
             isFetching: false
          };
